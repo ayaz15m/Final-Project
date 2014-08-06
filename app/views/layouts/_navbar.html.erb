@@ -1,0 +1,17 @@
+<header class="navigation">
+  <div class="navigation-wrapper">
+    <%= link_to dashboard_path do %>
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="">
+    <% end %>
+    <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+    <div class="nav">
+      <ul id="navigation-menu">
+        <li class="nav-link"><%= link_to "About", about_path %></li>
+        <li class="nav-link"><%= link_to "Contact", contact_path %></li>
+      </ul>
+    </div>
+    <div class="navigation-tools">
+      <a href="javascript:void(0)" class="sign-up">Sign Up</a>
+    </div>
+  </div>
+</header>
