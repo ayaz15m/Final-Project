@@ -2,8 +2,11 @@ class DashboardController < ApplicationController
 
   # before_action :authenticate_user!
 
+  respond_to :json, :html, :xml
+
   def index
     @sites = Sites.all.order("id ASC")
+    respond_with @sites
   end
 
   def tutorial

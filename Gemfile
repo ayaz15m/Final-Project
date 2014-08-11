@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 gem 'pry', group: [:development, :test]
 
 gem'devise'
+gem "active_model_serializers"
 
 gem 'bourbon'
 gem 'neat'

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
   # get 'dashboard/index'
 
   # get 'home/index'
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/tutorial' => 'dashboard#tutorial', as: :tutorial
   get '/contact' => 'dashboard#contact', as: :contact
   get '/about' => 'dashboard#about', as: :about
+  # get '/credentials' => 'dashboard#about', as: :about
 
   # get '/tutorial' => 'dashboard#tutorial', as: :tutorial
   delete "sites/:id" => "dashboard#destroy", as: :site
