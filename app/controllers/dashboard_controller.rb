@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
 
   # before_action :authenticate_user!
+  skip_before_filter :verify_authenticity_token
 
   respond_to :json, :html, :xml
 
@@ -19,7 +20,7 @@ class DashboardController < ApplicationController
   end
 
    def create
-    ##binding.pry
+    # binding.pry
     url = params[:url]
     description = params[:description]
     username = params[:username]
@@ -29,6 +30,8 @@ class DashboardController < ApplicationController
 
      if @site.save
         redirect_to dashboard_path
+    else
+      binding.pry
       end
   end
 

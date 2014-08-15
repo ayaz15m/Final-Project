@@ -58,7 +58,7 @@
               <td><%= site.username %></td>
               <td><%= site.password %></td>
               <td>
-                <%= link_to  "https://www.#{site.url}/", class: "btn btn-default", style:"font-size: 2rem; color:blue;", :target => "_blank" do %>
+                <%= link_to site.url, class: "btn btn-default", style:"font-size: 2rem; color:blue;", :target => "_blank" do %>
                   <span class="glyphicon glyphicon-globe" ></span>
                 <% end %>
 
