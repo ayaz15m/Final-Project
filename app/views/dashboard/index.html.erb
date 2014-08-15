@@ -5,6 +5,8 @@
 <div class="container">
   <html>
     <body>
+        <h2>Welcome to your dashboard</h2>
+        <h5>Manage all of your logins in one place!</h5><br><br>
         <button class="btn btn-default" style="font-size: 2rem; color:green;" data-toggle="modal" data-target="#myModal">
           <span class="glyphicon glyphicon-plus" ></span>
         </button><br><br>
@@ -110,28 +112,72 @@
       </table>
 
       <br><br><br><br><br>
-      <% @sites.each do |site| %>
-        <div class="cards">
-          <div class="card">
+      <div class="cards">
+        <% @sites.each do |site| %>
+          <div class="card" data-id="<%= site.id%>">
             <div class="card-image">
-              <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+              <img src="http://api.screenshotmachine.com/?key=878528&size=N&format=PNG&url=<%= site.url%>" />
+              <!-- <img src="http://www.robothumb.com/src/?url=<%= site.url%>&size=320x240" /> -->
+
             </div>
             <div class="card-header">
-              First Card
+              <%= site.description %>
             </div>
             <div class="card-copy">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident.</p>
+              <%= site.url %>
             </div>
             <div class="card-stats">
               <ul>
-                <li>98<span>Items</span></li>
-                <li>298<span>Things</span></li>
-                <li>923<span>Objects</span></li>
+                <%= link_to site.url, class: "btn btn-default", style:"font-size: 2rem; color:blue;", :target => "_blank" do %>
+                  <span class="glyphicon glyphicon-globe" ></span>
+                <% end %>
+
+                <button class="btn btn-default" style="font-size: 2rem; color:black;" data-toggle="modal" data-target="#myModal2">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+
+                <%= link_to  site ,method: :delete, remote: true, class: "btn btn-default", style:"font-size: 2rem; color:red;", "data-confirm"=>"Are you sure?" do %>
+                  <span class="glyphicon glyphicon-remove" ></span>
+                <% end %>
+
+                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Site</h4>
+                      </div>
+                      <div class="modal-body">
+                          <%= form_tag update_path do %>
+                            <%= label_tag :id %>
+                            <%= text_field_tag :id, site.id %><br><br>
+
+                            <%= label_tag :url %>
+                            <%= text_field_tag :url, site.url %><br><br>
+
+                            <%= label_tag :description %>
+                            <%= text_field_tag :description, site.description %><br><br>
+
+                            <%= label_tag :username %>
+                            <%= text_field_tag :username, site.username %><br><br>
+
+                            <%= label_tag :password %>
+                            <%= text_field_tag :password, site.password %><br><br>
+
+                          <%= submit_tag "Edit Site", class: "btn btn-large btn-primary" %>
+                        <% end %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </ul>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </body>
   </html>
 </div>
