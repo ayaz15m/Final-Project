@@ -29,11 +29,11 @@ class DashboardController < ApplicationController
 
     @site = Sites.create url: url, description: description, username: username, password: password
 
-     if @site.save
-        redirect_to dashboard_path
+    if @site.save
+      redirect_to dashboard_path
     else
       # render :dashboard
-      end
+    end
   end
 
   def update

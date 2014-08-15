@@ -123,7 +123,7 @@
         <% @sites.each do |site| %>
           <div class="card" data-id="<%= site.id%>">
             <div class="card-image">
-              <img src="http://api.screenshotmachine.com/?key=878528&size=N&format=PNG&url=<%= site.url%>" />
+              <img src="http://api.screenshotmachine.com/?key=eb2f07&size=N&format=PNG&url=<%= site.url%>" />
               <!-- <img src="http://www.robothumb.com/src/?url=<%= site.url%>&size=320x240" /> -->
             </div>
             <div class="card-header">
@@ -138,7 +138,7 @@
                   <span class="glyphicon glyphicon-globe" ></span>
                 <% end %>
 
-                <button class="btn btn-default" style="font-size: 2rem; color:black;" data-toggle="modal" data-target="#myModal2">
+                <button class="btn btn-default" style="font-size: 2rem; color:black;" data-toggle="modal" data-target="#myModal<%= site.id%>">
                   <span class="glyphicon glyphicon-pencil"></span>
                 </button>
 
@@ -146,7 +146,7 @@
                   <span class="glyphicon glyphicon-remove" ></span>
                 <% end %>
 
-                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myModal<%= site.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
