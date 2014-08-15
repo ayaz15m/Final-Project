@@ -19,6 +19,13 @@
                 <h4 class="modal-title" id="myModalLabel">Add Site</h4>
               </div>
               <div class="modal-body">
+                <!-- <%= simple_form_for @site, url: :dashboard do |f| %>
+                  <%= f.input :url %>
+                  <%= f.input :description %>
+                  <%= f.input :username %>
+                  <%= f.input :password %>
+                  <%= f.submit class: "btn btn-primary btn-lg" %>
+                  <% end %> -->
                 <%= form_tag new_path do %>
                   <%= label_tag :url %>
                   <%= text_field_tag :url %><br><br>

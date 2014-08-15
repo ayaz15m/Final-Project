@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
 
   def index
     @sites = Sites.all.order("id ASC")
+    @site = Sites.new
     respond_with @sites
   end
 
@@ -31,7 +32,7 @@ class DashboardController < ApplicationController
      if @site.save
         redirect_to dashboard_path
     else
-      binding.pry
+      # render :dashboard
       end
   end
 
