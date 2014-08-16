@@ -18,7 +18,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Add Site</h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="modal-body">
                 <!-- <%= simple_form_for @site, url: :dashboard do |f| %>
                   <%= f.input :url %>
                   <%= f.input :description %>
@@ -39,7 +39,7 @@
                   <%= label_tag :password %>
                   <%= text_field_tag :password %><br><br>
 
-                <%= submit_tag "Add Site", class: "btn btn-large btn-primary" %>
+                <%= submit_tag "Add Site", class: "btn btn-large btn-primary", :onclick => "createform();" %>
                 <% end %>
               </div>
               <div class="modal-footer">
@@ -155,8 +155,7 @@
                       </div>
                       <div class="modal-body">
                           <%= form_tag update_path do %>
-                            <%= label_tag :id %>
-                            <%= text_field_tag :id, site.id %><br><br>
+                            <%= hidden_field_tag :id, site.id %><br><br>
 
                             <%= label_tag :url %>
                             <%= text_field_tag :url, site.url %><br><br>
