@@ -6,12 +6,16 @@ class DashboardController < ApplicationController
   respond_to :json, :html, :xml
 
   def index
-    @sites = Sites.all.order("id ASC")
+    @current_user = User.all.find_by(id: session[:user_id])
+    sites = Sites.all.where(user_id: @current_user.id)
+
+    @sites = sites.all.order("id ASC")
     @site = Sites.new
     respond_with @sites
   end
 
   def tutorial
+    # binding.pry
   end
 
   def destroy
@@ -22,12 +26,13 @@ class DashboardController < ApplicationController
 
    def create
     # binding.pry
+    user_id = session[:user_id]
     url = params[:url]
     description = params[:description]
     username = params[:username]
     password = params[:password]
 
-    @site = Sites.create url: url, description: description, username: username, password: password
+    @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
 
     if @site.save
       redirect_to dashboard_path

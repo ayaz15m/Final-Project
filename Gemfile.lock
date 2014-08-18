@@ -47,12 +47,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
-    devise (3.2.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.2.1)
     hike (1.2.3)
@@ -74,7 +68,6 @@ GEM
     neat (1.5.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
-    orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.0)
@@ -139,18 +132,16 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
-      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   active_model_serializers
+  bcrypt
   bitters
   bourbon
   coffee-rails (~> 4.0.0)
-  devise
   jbuilder (~> 2.0)
   jquery-rails
   neat

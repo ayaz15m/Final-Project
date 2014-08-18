@@ -38,7 +38,6 @@ gem 'spring',        group: :development
 # Use debugger
 gem 'pry', group: [:development, :test]
 
-gem'devise'
 gem "active_model_serializers"
 
 gem 'bourbon'
@@ -46,3 +45,4 @@ gem 'neat'
 gem 'bitters'
 gem 'refills'
 gem 'simple_form', '3.1.0.rc2'
+gem 'bcrypt'

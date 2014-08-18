@@ -19,18 +19,21 @@
 
 <header class="navigation">
   <div class="navigation-wrapper">
-    <a href="javascript:void(0)" class="logo">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="">
+    <a class="logo">
+      <h4><font color='white'>SimplePW</font></h4><img src="http://findicons.com/files/icons/2146/realistik_reloaded/128/lock.png" title="Simple">
+      <!-- <h6><font color='red'>All fields are required</font></h6> -->
     </a>
     <div class="nav">
       <ul id="navigation-menu">
+        <!-- <li class="nav-link"><h6>sljad</h6></li> -->
         <li class="nav-link"><%= link_to "Dashboard", dashboard_path %></li>
-        <li class="nav-link"><%= link_to "About", about_path %></li>
+        <!-- <li class="nav-link"><%= link_to "About", about_path %></li> -->
+        <li class="nav-link"><%= link_to "Tutorial", tutorial_path %></li>
         <li class="nav-link"><%= link_to "Contact", contact_path %></li>
       </ul>
     </div>
     <div class="navigation-tools">
-      <a href="javascript:void(0)" class="sign-up">Sign Up</a>
+      <%= link_to "Sign Out", sign_out_path, class: "sign-up", method: :delete %>
     </div>
   </div>
 </header>

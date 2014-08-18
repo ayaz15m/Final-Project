@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'sessions/new'
+
   # devise_for :users
   # get 'dashboard/index'
 
@@ -26,7 +28,11 @@ Rails.application.routes.draw do
   post '/update' => 'dashboard#update', as: :update
 
   # patch "/dashboard/:id" => "dashboard#update"
-
+  get '/sign_in' => "sessions#new", as: :new_session
+  post '/sign_in/verify' => "sessions#verify", as: :verify
+  get '/sign_up' => "sessions#register", as: :sign_up
+  post '/sign_up/create' => "sessions#create_user", as: :create_user
+  delete '/session' => "sessions#destroy", as: :sign_out
 
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
