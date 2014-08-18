@@ -19,16 +19,9 @@
                 <h4 class="modal-title" id="myModalLabel">Add Site</h4>
               </div>
               <div class="modal-body" id="modal-body">
-                <!-- <%= simple_form_for @site, url: :dashboard do |f| %>
-                  <%= f.input :url %>
-                  <%= f.input :description %>
-                  <%= f.input :username %>
-                  <%= f.input :password %>
-                  <%= f.submit class: "btn btn-primary btn-lg" %>
-                  <% end %> -->
                 <%= form_tag new_path do %>
                   <%= label_tag :url %>
-                  <%= text_field_tag :url, placeholder="Please copy and paste URL here" %><br><br>
+                  <%= text_field_tag :url, "", placeholder: "Please copy and paste URL here" %><br><br>
 
                   <%= label_tag :description %>
                   <%= text_field_tag :description %><br><br>
@@ -37,7 +30,7 @@
                   <%= text_field_tag :username %><br><br>
 
                   <%= label_tag :password %>
-                  <%= text_field_tag :password %><br><br>
+                  <%= password_field_tag :password %><br><br>
 
                 <%= submit_tag "Add Site", class: "btn btn-large btn-primary", :onclick => "createform();" %>
                 <% end %>
@@ -49,76 +42,8 @@
           </div>
         </div>
 
-        <!-- <table class="table-borders">
-        <thead>
-          <tr>
-            <th>URL</th>
-            <th>Description</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @sites.each do |site| %>
-            <tr data-id="<%= site.id%>">
-              <td><%= site.url %></td>
-              <td><%= site.description %></td>
-              <td><%= site.username %></td>
-              <td><%= site.password %></td>
-              <td>
-                <%= link_to site.url, class: "btn btn-default", style:"font-size: 2rem; color:blue;", :target => "_blank" do %>
-                  <span class="glyphicon glyphicon-globe" ></span>
-                <% end %>
-
-                <button class="btn btn-default" style="font-size: 2rem; color:black;" data-toggle="modal" data-target="#myModal2">
-                  <span class="glyphicon glyphicon-pencil"></span>
-                </button>
-
-                <%= link_to  site ,method: :delete, remote: true, class: "btn btn-default", style:"font-size: 2rem; color:red;", "data-confirm"=>"Are you sure?" do %>
-                  <span class="glyphicon glyphicon-remove" ></span>
-                <% end %>
-
-                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Site</h4>
-                      </div>
-                      <div class="modal-body">
-                          <%= form_tag update_path do %>
-                            <%= label_tag :id %>
-                            <%= text_field_tag :id, site.id %><br><br>
-
-                            <%= label_tag :url %>
-                            <%= text_field_tag :url, site.url %><br><br>
-
-                            <%= label_tag :description %>
-                            <%= text_field_tag :description, site.description %><br><br>
-
-                            <%= label_tag :username %>
-                            <%= text_field_tag :username, site.username %><br><br>
-
-                            <%= label_tag :password %>
-                            <%= text_field_tag :password, site.password %><br><br>
-
-                          <%= submit_tag "Edit Site", class: "btn btn-large btn-primary" %>
-                        <% end %>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table> -->
-
       <br><br>
+      <% if @sites %>
       <div class="cards">
         <% @sites.each do |site| %>
           <div class="card" data-id="<%= site.id%>">
@@ -167,7 +92,7 @@
                             <%= text_field_tag :username, site.username %><br><br>
 
                             <%= label_tag :password %>
-                            <%= text_field_tag :password, site.password %><br><br>
+                            <%= password_field_tag :password, site.password %><br><br>
 
                           <%= submit_tag "Edit Site", class: "btn btn-large btn-primary" %>
                         <% end %>
@@ -183,6 +108,7 @@
           </div>
         <% end %>
       </div>
+      <%end %>
     </body>
   </html>
 </div>

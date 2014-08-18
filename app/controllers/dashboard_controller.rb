@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   skip_before_filter :verify_authenticity_token
 
   respond_to :json, :html, :xml
@@ -61,5 +61,16 @@ class DashboardController < ApplicationController
   end
 
   def contact
+  end
+
+  def authenticate_user!
+    if session[:user_id]
+      true
+    else
+      respond_with do |format|
+        # format.html {redirect_to new_session_path}
+        format.json {render status: 403}
+      end
+    end
   end
 end
