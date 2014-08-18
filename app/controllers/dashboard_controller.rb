@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
 
     @sites = sites.all.order("id ASC")
     @site = Sites.new
+    # @array = [@sites, @current_user]
     respond_with @sites
   end
 
