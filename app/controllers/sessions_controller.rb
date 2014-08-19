@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       sign_in user
       # redirect_to dashboard_path
     else
+      flash[:notice] = "Please enter correct username or password"
       render :new
     end
   end

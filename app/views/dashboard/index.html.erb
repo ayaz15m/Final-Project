@@ -54,7 +54,7 @@
                 <%= site.description %>
               </div>
               <div class="card-copy">
-                <%= site.url %>
+                <%= URI.parse(site.url).host %>
               </div>
               <div class="card-stats">
                 <ul>
