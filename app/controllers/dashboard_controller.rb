@@ -27,8 +27,9 @@ class DashboardController < ApplicationController
 
    def create
     # binding.pry
+
     user_id = session[:user_id]
-    url = params[:url]
+    url = Sitelist.find_by(id: params[:url]).url
     description = params[:description]
     username = params[:username]
     password = params[:password]
@@ -68,7 +69,6 @@ class DashboardController < ApplicationController
       true
     else
       respond_with do |format|
-        # format.html {redirect_to new_session_path}
         format.json {render status: 403}
       end
     end

@@ -19,12 +19,12 @@ function createform(){
 
       })
 
-      // $('#myModal').modal('toggle');
+      $('#myModal').modal('toggle');
       window.location.href = "http://0.0.0.0:3000/dashboard";
   }
 };
 
-// 
+//
 // function updateform(id){
 //   console.log(id)
 //   event.preventDefault();

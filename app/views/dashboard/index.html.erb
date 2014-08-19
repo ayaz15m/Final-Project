@@ -21,7 +21,8 @@
               <div class="modal-body" id="modal-body">
                 <%= form_tag new_path do %>
                   <%= label_tag :url %>
-                  <%= text_field_tag :url, "", placeholder: "Please copy and paste URL here" %><br><br>
+                  <center><%= select_tag :url, options_from_collection_for_select(Sitelist.all, "id", "name"), class: "btn btn-default btn-sm dropdown-toggle",prompt: "Select Site" %></center><br><br>
+                  <!-- <%= text_field_tag :url, "", placeholder: "Please copy and paste URL here" %><br><br> -->
 
                   <%= label_tag :description %>
                   <%= text_field_tag :description %><br><br>
@@ -82,8 +83,7 @@
                           <%= form_tag update_path do %>
                             <%= hidden_field_tag :id, site.id %><br><br>
 
-                            <%= label_tag :url %>
-                            <%= text_field_tag :url, site.url %><br><br>
+                            <%= hidden_field_tag :url, site.url %><br><br>
 
                             <%= label_tag :description %>
                             <%= text_field_tag :description, site.description %><br><br>
