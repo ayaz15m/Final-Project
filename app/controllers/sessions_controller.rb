@@ -5,8 +5,9 @@ class SessionsController < ApplicationController
   def verify
     # find the user
     user = User.find_by email: params[:email]
+
     # check if password correct
-    if user && user.password_digest==params[:password]
+    if user && BCrypt::Password.new(user.password_digest)==params[:password]
       sign_in user
       # redirect_to dashboard_path
     else
@@ -26,7 +27,7 @@ class SessionsController < ApplicationController
     password_confirmation = params[:user][:password_confirmation]
     # binding.pry
     # @user = User.create name: name, email: email, password: password
-    @user = User.create name: name, email: email, password: password, password_digest: password_confirmation
+    @user = User.create name: name, email: email, password: password, password_digest: BCrypt::Password.create(password_confirmation)
     if @user.save && password == password_confirmation
       # binding.pry
 

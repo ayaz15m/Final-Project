@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   respond_to :json, :html, :xml
+  # BCrypt::Password.new(already encrypted password) == BCrypt::Password.create(what user types in)
 
   def index
     @current_user = User.all.find_by(id: session[:user_id])
@@ -26,7 +27,7 @@ class DashboardController < ApplicationController
   end
 
    def create
-    # binding.pry
+    #  binding.pry
 
     user_id = session[:user_id]
     url = Sitelist.find_by(id: params[:url]).url
