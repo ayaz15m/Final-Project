@@ -20,6 +20,7 @@
               </div>
               <div class="modal-body" id="modal-body">
                 <%= form_tag new_path do %>
+                <!-- , method: :post, remote: true -->
                   <center><%= select_tag :url, options_from_collection_for_select(Sitelist.all, "id", "name"), class: "btn btn-default btn-sm dropdown-toggle",prompt: "Select Site" %></center><br>
 
                   <%= label_tag :description %>
@@ -43,7 +44,7 @@
 
       <br><br>
       <% if @sites %>
-        <div class="cards">
+        <div class="cards" id="cards">
           <% @sites.each do |site| %>
             <div class="card" data-id="<%= site.id%>">
               <div class="card-image">

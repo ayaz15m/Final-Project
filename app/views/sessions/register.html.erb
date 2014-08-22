@@ -1,10 +1,31 @@
-<br><br>
-<div class="container">
-  <%= simple_form_for @user, url: create_user_path do |f| %>
-    <%= f.input :name %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-    <%= f.submit class: "btn btn-primary btn-lg" %>
-  <% end %>
+<br><% if flash[:alert] %>
+  <div class="alert"><h3><font color='red'><%= flash[:alert] %></font></h3></div>
+<% end %>
+
+<div id="wrapper">
+  <%= form_tag create_user_path, :id => 'form', class: "login-form" do %>
+
+    <div class="header">
+    <h1>Register</h1>
+    <span>Sign up below to begin using SimplePW</span>
+    </div>
+
+    <div class="content">
+    <%= text_field_tag :name, "", class: "input username", placeholder: "Name" %>
+    <div class="user-icon"></div>
+    <%= text_field_tag :email, "", class: "input username", placeholder: "Email" %>
+    <div class="user-icon"></div>
+    <%= password_field_tag :password, "", class: "input password", placeholder: "Password" %>
+    <div class="pass-icon"></div>
+    <%= password_field_tag :password_confirmation, "", class: "input password", placeholder: "Confirm Password" %>
+    <div class="pass-icon"></div>
+    </div>
+
+    <div class="footer">
+      <%= submit_tag "Register", class: "button" %>
+    </div>
+    <p>If you already have a login, <%= link_to "Sign In", new_session_path%></p>
+    <% end %>
+    <br><br>
 </div>
+<div class="gradient"></div>

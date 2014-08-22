@@ -6,6 +6,16 @@ class DashboardController < ApplicationController
   respond_to :json, :html, :xml
   # BCrypt::Password.new(already encrypted password) == BCrypt::Password.create(what user types in)
 
+
+  # before_filter :load
+  #
+  # def load
+  #   @current_user = User.all.find_by(id: session[:user_id])
+  #   sites = Sites.all.where(user_id: @current_user.id)
+  #
+  #   @sites = sites.all.order("id ASC")
+  # end
+
   def index
     @current_user = User.all.find_by(id: session[:user_id])
     sites = Sites.all.where(user_id: @current_user.id)
@@ -27,7 +37,7 @@ class DashboardController < ApplicationController
   end
 
    def create
-    #  binding.pry
+    # binding.pry
 
     user_id = session[:user_id]
     url = Sitelist.find_by(id: params[:url]).url
@@ -38,7 +48,7 @@ class DashboardController < ApplicationController
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
 
     if @site.save
-      redirect_to dashboard_path
+      # redirect_to dashboard_path
     else
       # render :dashboard
     end

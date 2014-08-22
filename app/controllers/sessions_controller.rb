@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if session[:user_id]
+      redirect_to dashboard_path
+    end
   end
 
   def verify
@@ -21,19 +24,25 @@ class SessionsController < ApplicationController
   end
 
   def create_user
-    name = params[:user][:name]
-    email = params[:user][:email]
-    password = params[:user][:password]
-    password_confirmation = params[:user][:password_confirmation]
     # binding.pry
-    # @user = User.create name: name, email: email, password: password
-    @user = User.create name: name, email: email, password: password, password_digest: BCrypt::Password.create(password_confirmation)
-    if @user.save && password == password_confirmation
+    if params[:name].present? && params[:email].present? && params[:password].present? && params[:password_confirmation].present?
+      name = params[:user][:name]
+      email = params[:user][:email]
+      password = params[:user][:password]
+      password_confirmation = params[:user][:password_confirmation]
       # binding.pry
+      # @user = User.create name: name, email: email, password: password
+      @user = User.create name: name, email: email, password: password, password_digest: BCrypt::Password.create(password_confirmation)
+      if @user.save && password == password_confirmation
+        # binding.pry
 
-      new_sign_in @user
-      # redirect_to tutorial path
+        new_sign_in @user
+        # redirect_to tutorial path
+      else
+        render :register
+      end
     else
+      flash[:alert] = "Please complete all fields"
       render :register
     end
   end
