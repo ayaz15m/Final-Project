@@ -1,5 +1,5 @@
 <div class="modal-body" id="modal-body">
-  <%= form_tag new_path do %>
+  <%= form_tag new_path, remote: true do %>
     <center><%= select_tag :url, options_from_collection_for_select(Sitelist.all, "id", "name"), class: "btn btn-default btn-sm dropdown-toggle",prompt: "Select Site" %></center><br>
 
     <%= label_tag :description %>
