@@ -1,57 +1,28 @@
 <div class="forms">
-  <br><% if flash[:notice] %>
+  <br>
+  <% if flash[:notice] %>
     <div class="notice"><h3><font color='red'><%= flash[:notice] %></font></h3></div>
   <% end %>
   <br><br>
-<!-- <% if @message %>
-    <h3><font color='red' id='warn'><%= @message %></font></h3>
-    <script type="text/javascript" src="../assets/verify.js.erb"></script>
-
-<% end %> -->
-<!-- <div id="entire">
-  <%= form_tag verify_path, :id => 'form' do %>
-    <fieldset>
-      <label>Sign In!</label>
-    </fieldset>
-    <div class="container">
-      <div>
-        <%= label_tag :email %>
-        <%= text_field_tag :email, "", class: "form-control", placeholder: "Email" %>
-      </div>
-      <div>
-        <%= label_tag :password %>
-        <%= password_field_tag :password, "", class: "form-control", placeholder: "Email" %>
-      </div>
-      <div>
-        <%= submit_tag "Sign In", class: "btn btn-primary btn-lg" %>
-    </div>
-  <% end %>
-  <p>If you don't have a login, <%= link_to "Sign Up", sign_up_path%></p>
-  </div>
-</div> -->
 
   <div id="wrapper">
     <%= form_tag verify_path, :id => 'form', class: "login-form" do %>
-
   		<div class="header">
-  		<h1>Sign In</h1>
+  		   <h1>Sign In</h1>
   		</div>
 
   		<div class="content">
-      <%= text_field_tag :email, "", class: "input username", placeholder: "Email" %>
+        <%= text_field_tag :email, "", class: "input username", placeholder: "Email" %>
   		<div class="user-icon"></div>
-      <%= password_field_tag :password, "", class: "input password", placeholder: "Password" %>
+        <%= password_field_tag :password, "", class: "input password", placeholder: "Password" %>
   		<div class="pass-icon"></div>
   		</div>
 
   		<div class="footer">
-        <!-- <%= link_to "Register", sign_up_path, class: "btn btn-default btn-lg"%> -->
         <%= submit_tag "Sign In", class: "button" %>
   		</div>
       <p>If you don't have a login, <%= link_to "Register", sign_up_path%></p>
-      <% end %>
-
+    <% end %>
   </div>
   <div class="gradient"></div>
-
 </div>

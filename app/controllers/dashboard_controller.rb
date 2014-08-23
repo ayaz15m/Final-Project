@@ -4,45 +4,38 @@ class DashboardController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   respond_to :json, :html, :xml
-  # BCrypt::Password.new(already encrypted password) == BCrypt::Password.create(what user types in)
-
-
-  # before_filter :load
-  #
-  # def load
-  #   @current_user = User.all.find_by(id: session[:user_id])
-  #   sites = Sites.all.where(user_id: @current_user.id)
-  #
-  #   @sites = sites.all.order("id ASC")
-  # end
-
-
-  #icon spacing update and create
-  # grey screen once updated and modal is toggled
 
   def index
     @current_user = User.all.find_by(id: session[:user_id])
-    sites = Sites.all.where(user_id: @current_user.id)
+    if Sites.count > 0
+      # binding.pry
+      sites = Sites.all.where(user_id: @current_user.id)
 
-    @sites = sites.all.order("id ASC")
-    @site = Sites.new
-    # @array = [@sites, @current_user]
-    respond_with @sites
+      @sites = sites.all.order("id ASC")
+      @site = Sites.new
+      if @sites.count > 0
+        respond_with @sites
+      else
+        respond_with do |format|
+          format.json {render status: 404}
+        end
+      end
+    else
+      respond_with do |format|
+        format.json {render status: 404}
+      end
+    end
   end
 
   def tutorial
-    # binding.pry
   end
 
   def destroy
     @site = Sites.find(params[:id])
     @site.destroy
-    # redirect_to root_path
   end
 
    def create
-    # binding.pry
-
     user_id = session[:user_id]
     url = Sitelist.find_by(id: params[:url]).url
     description = params[:description]
@@ -53,7 +46,6 @@ class DashboardController < ApplicationController
   end
 
   def update
-
     id = params[:id]
     url = params[:url]
     description = params[:description]
@@ -63,10 +55,6 @@ class DashboardController < ApplicationController
     site = Sites.find_by(id: id)
 
     @site = site.update id: id, url: url, description: description, username: username, password: password
-
-    # binding.pry
-    #
-    # redirect_to dashboard_path
   end
 
   def about

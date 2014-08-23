@@ -1,4 +1,5 @@
 <% @current_user = User.all.find_by(id: session[:user_id]) %>
+
 <% @sites = Sites.all.where(user_id: @current_user.id) %>
 
 <% @site = @sites.all.order("id ASC").last %>

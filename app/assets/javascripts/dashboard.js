@@ -20,6 +20,5 @@ function createform(){
       })
 
       $('#myModal').modal('toggle');
-      // window.location.href = "http://0.0.0.0:3000/dashboard";
   }
 };
