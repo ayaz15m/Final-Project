@@ -47,14 +47,12 @@ class SessionsController < ApplicationController
 
   def sign_in user
     session[:user_id] = user.id
-    # binding.pry
 
     redirect_to dashboard_path
   end
 
   def new_sign_in user
     session[:user_id] = user.id
-    # binding.pry
 
     redirect_to tutorial_path
   end

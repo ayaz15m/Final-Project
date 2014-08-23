@@ -8,7 +8,6 @@ class DashboardController < ApplicationController
   def index
     @current_user = User.all.find_by(id: session[:user_id])
     if Sites.count > 0
-      # binding.pry
       sites = Sites.all.where(user_id: @current_user.id)
 
       @sites = sites.all.order("id ASC")
