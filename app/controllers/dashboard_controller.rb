@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     if Sites.count > 0
       sites = Sites.all.where(user_id: @current_user.id)
 
-      @sites = sites.all.order("id ASC")
+      @sites = sites.all.order("id DESC")
       @site = Sites.new
       if @sites.count > 0
         respond_with @sites
