@@ -16,6 +16,10 @@ class DashboardController < ApplicationController
   #   @sites = sites.all.order("id ASC")
   # end
 
+
+  #icon spacing update and create
+  # grey screen once updated and modal is toggled
+
   def index
     @current_user = User.all.find_by(id: session[:user_id])
     sites = Sites.all.where(user_id: @current_user.id)
@@ -46,12 +50,6 @@ class DashboardController < ApplicationController
     password = params[:password]
 
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
-
-    if @site.save
-      # redirect_to dashboard_path
-    else
-      # render :dashboard
-    end
   end
 
   def update
@@ -66,7 +64,9 @@ class DashboardController < ApplicationController
 
     @site = site.update id: id, url: url, description: description, username: username, password: password
 
-    redirect_to dashboard_path
+    # binding.pry
+    #
+    # redirect_to dashboard_path
   end
 
   def about

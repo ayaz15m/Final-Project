@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'contact_form/new'
+
+  get 'contact_form/create'
+
   # get 'sessions/new'
 
   # devise_for :users

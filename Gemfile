@@ -46,3 +46,9 @@ gem 'bitters'
 gem 'refills'
 gem 'simple_form', '3.1.0.rc2'
 gem 'bcrypt'
+
+gem 'mail_form'
+
+group :production do
+  gem 'rails_12factor'
+end
