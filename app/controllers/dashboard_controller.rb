@@ -12,6 +12,7 @@ class DashboardController < ApplicationController
 
       @sites = sites.all.order("id DESC")
       @site = Sites.new
+
       if @sites.count > 0
         respond_with @sites
       else
@@ -26,6 +27,18 @@ class DashboardController < ApplicationController
     end
   end
 
+  # def secretize(value, password)
+  #   salt  = SecureRandom.random_bytes(64)
+  #   key   = ActiveSupport::KeyGenerator.new('password').generate_key(salt)
+  #   crypt = ActiveSupport::MessageEncryptor.new(key)
+  #
+  #   if value == 1
+  #     encrypted = crypt.encrypt_and_sign(password)
+  #   else
+  #     decrypted = crypt.decrypt_and_verify(password)
+  #   end
+  # end
+
   def tutorial
   end
 
@@ -39,15 +52,10 @@ class DashboardController < ApplicationController
     url = Sitelist.find_by(id: params[:url]).url
     description = params[:description]
     username = params[:username]
+    # password = secretize(1, params[:password])
     password = params[:password]
 
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
-
-    # if @site.save
-    #   redirect_to dashboard_path
-    # else
-    #   render :update
-    # end
   end
 
   def update
@@ -55,6 +63,7 @@ class DashboardController < ApplicationController
     url = params[:url]
     description = params[:description]
     username = params[:username]
+    # password = secretize(1, params[:password])
     password = params[:password]
 
     site = Sites.find_by(id: id)
