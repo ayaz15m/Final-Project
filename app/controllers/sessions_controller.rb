@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
 
         new_sign_in @user
       else
+        flash[:alert] = "Passwords do not match"
         render :register
       end
     else
