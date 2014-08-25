@@ -63,7 +63,7 @@
                             <h4 class="modal-title" id="myModalLabel">Edit Site</h4>
                           </div>
                           <div class="modal-body" id="modal-body2">
-                              <%= form_tag update_path, remote: true do %>
+                              <%= form_tag update_path, method: :post, remote: true do %>
                                 <%= hidden_field_tag :id, site.id %>
 
                                 <%= hidden_field_tag :url, site.url %>

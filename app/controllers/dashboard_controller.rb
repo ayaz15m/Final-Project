@@ -42,6 +42,12 @@ class DashboardController < ApplicationController
     password = params[:password]
 
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
+
+    # if @site.save
+    #   redirect_to dashboard_path
+    # else
+    #   render :update
+    # end
   end
 
   def update
