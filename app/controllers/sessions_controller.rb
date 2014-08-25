@@ -32,7 +32,11 @@ class SessionsController < ApplicationController
 
         new_sign_in @user
       else
-        flash[:alert] = "Passwords do not match"
+        if password.length < 8
+          flash[:alert] = "Password does not have 8 characters"
+        else
+          flash[:alert] = "Passwords do not match"
+        end
         render :register
       end
     else
