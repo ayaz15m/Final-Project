@@ -14,6 +14,7 @@ class DashboardController < ApplicationController
       @site = Sites.new
 
       if @sites.count > 0
+        # secretize(value, password)
         respond_with @sites
       else
         respond_with do |format|
