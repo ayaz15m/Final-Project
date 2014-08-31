@@ -13,9 +13,15 @@ class DashboardController < ApplicationController
       @sites = sites.all.order("id DESC")
       @site = Sites.new
 
+      # result = secretize(2, @sites.first.password)
+      # binding.pry
+
       if @sites.count > 0
-        # secretize(value, password)
-        respond_with @sites
+        @user_sites = @sites.map do |site|
+          secretize(2, site.password)
+        end
+        # binding.pry
+        respond_with @user_sites
       else
         respond_with do |format|
           format.json {render status: 404}
@@ -28,17 +34,18 @@ class DashboardController < ApplicationController
     end
   end
 
-  # def secretize(value, password)
-  #   salt  = SecureRandom.random_bytes(64)
-  #   key   = ActiveSupport::KeyGenerator.new('password').generate_key(salt)
-  #   crypt = ActiveSupport::MessageEncryptor.new(key)
-  #
-  #   if value == 1
-  #     encrypted = crypt.encrypt_and_sign(password)
-  #   else
-  #     decrypted = crypt.decrypt_and_verify(password)
-  #   end
-  # end
+  def secretize(value, password)
+    # salt  = SecureRandom.random_bytes(64)
+    # key   = ActiveSupport::KeyGenerator.new('password').generate_key(salt)
+    # crypt = ActiveSupport::MessageEncryptor.new(key)
+
+    if value == 1
+      return AESCrypt.encrypt(password, "#{session[:user_id]}")
+    else
+      # binding.pry
+      return AESCrypt.decrypt(password, "#{session[:user_id]}")
+    end
+  end
 
   def tutorial
   end
@@ -53,8 +60,9 @@ class DashboardController < ApplicationController
     url = Sitelist.find_by(id: params[:url]).url
     description = params[:description]
     username = params[:username]
-    # password = secretize(1, params[:password])
-    password = params[:password]
+    password = secretize(1, params[:password])
+    # password = params[:password]
+    # binding.pry
 
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
   end
