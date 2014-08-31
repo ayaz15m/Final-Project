@@ -18,7 +18,22 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Add Site</h4>
               </div>
-              <%= render partial: 'dashboard/add_form' %>
+              <div class="modal-body" id="modal-body">
+                <%= form_tag new_path, method: :post, remote: true do %>
+                  <center><%= select_tag :url, options_from_collection_for_select(Sitelist.all, "id", "name"), class: "btn btn-default btn-sm dropdown-toggle",prompt: "Select Site" %></center><br>
+
+                  <%= label_tag :description %>
+                  <%= text_field_tag :description %><br><br>
+
+                  <%= label_tag :username %>
+                  <%= text_field_tag :username %><br><br>
+
+                  <%= label_tag :password %>
+                  <%= password_field_tag :password %><br><br>
+
+                <%= submit_tag "Add Site", class: "btn btn-large btn-primary"%>
+                <% end %>
+              </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>

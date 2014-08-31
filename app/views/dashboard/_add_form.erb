@@ -1,16 +1,1 @@
-<div class="modal-body" id="modal-body">
-  <%= form_tag new_path, remote: true do %>
-    <center><%= select_tag :url, options_from_collection_for_select(Sitelist.all, "id", "name"), class: "btn btn-default btn-sm dropdown-toggle",prompt: "Select Site" %></center><br>
 
-    <%= label_tag :description %>
-    <%= text_field_tag :description %><br><br>
-
-    <%= label_tag :username %>
-    <%= text_field_tag :username %><br><br>
-
-    <%= label_tag :password %>
-    <%= password_field_tag :password %><br><br>
-
-  <%= submit_tag "Add Site", class: "btn btn-large btn-primary"%>
-  <% end %>
-</div>

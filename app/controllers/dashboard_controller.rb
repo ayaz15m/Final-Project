@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
           secretize(2, site.password)
         end
         # binding.pry
-        respond_with @user_sites
+        respond_with [@sites, @user_sites]
       else
         respond_with do |format|
           format.json {render status: 404}
@@ -62,7 +62,6 @@ class DashboardController < ApplicationController
     username = params[:username]
     password = secretize(1, params[:password])
     # password = params[:password]
-    # binding.pry
 
     @site = Sites.create user_id: user_id, url: url, description: description, username: username, password: password
   end
@@ -72,8 +71,8 @@ class DashboardController < ApplicationController
     url = params[:url]
     description = params[:description]
     username = params[:username]
-    # password = secretize(1, params[:password])
-    password = params[:password]
+    password = secretize(1, params[:password])
+    # password = params[:password]
 
     site = Sites.find_by(id: id)
 
