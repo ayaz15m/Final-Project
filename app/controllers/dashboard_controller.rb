@@ -13,14 +13,10 @@ class DashboardController < ApplicationController
       @sites = sites.all.order("id DESC")
       @site = Sites.new
 
-      # result = secretize(2, @sites.first.password)
-      # binding.pry
-
       if @sites.count > 0
         @user_sites = @sites.map do |site|
           secretize(2, site.password)
         end
-        # binding.pry
         respond_with [@sites, @user_sites]
       else
         respond_with do |format|
@@ -42,7 +38,6 @@ class DashboardController < ApplicationController
     if value == 1
       return AESCrypt.encrypt(password, "#{session[:user_id]}")
     else
-      # binding.pry
       return AESCrypt.decrypt(password, "#{session[:user_id]}")
     end
   end
